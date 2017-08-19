@@ -20,7 +20,7 @@ intellij {
 
 
 group 'com.kogitune.intellij.codeinsight'
-version '2.0.3  '
+version '2.0.4'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.12'
@@ -45,9 +45,9 @@ configurations {
 
 
 task(verifySetup) << {
-    def ideaJar = "$AndroidStudioPath/lib/idea.jar"
+    ideaJar = "$AndroidStudioPath/lib/idea.jar"
     if (!file(ideaJar).exists()) {
-        throw new GradleException("$ideaJar not found, set AndroidStudioPath in gradle.properties")
+        throw new Exception("$ideaJar not found, set AndroidStudioPath in gradle.properties")
     }
 }
 

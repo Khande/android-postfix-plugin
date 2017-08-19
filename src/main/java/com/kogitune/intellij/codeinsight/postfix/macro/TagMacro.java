@@ -21,6 +21,7 @@ import com.intellij.codeInsight.template.macro.ClassNameMacro;
 import com.intellij.codeInsight.template.macro.MacroUtil;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -41,7 +42,7 @@ public class TagMacro extends Macro {
 
     @Nullable
     @Override
-    public Result calculateResult(Expression[] expressions, ExpressionContext context) {
+    public Result calculateResult(@NotNull Expression[] expressions, ExpressionContext context) {
         if (isContainTagField(context)) {
             return new TextResult("TAG");
         } else {

@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/android-postfix-completion.iml" filepath="$PROJECT_DIR$/android-postfix-completion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-postfix-plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/android-postfix-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-postfix-plugin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/android-postfix-plugin_main.iml" group="android-postfix-plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-postfix-plugin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/android-postfix-plugin_test.iml" group="android-postfix-plugin" />
     </modules>
   </component>
 </project>

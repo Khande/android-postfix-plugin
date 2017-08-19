@@ -15,6 +15,8 @@
  */
 package com.kogitune.intellij.codeinsight.postfix.templates.surround;
 
+import com.intellij.openapi.module.Module;
+import com.intellij.openapi.module.ModuleUtil;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
@@ -37,24 +39,31 @@ public class LogDTemplate extends LogTemplate {
     }
 
     public LogDTemplate(@NotNull String alias) {
-        super(alias, "if(BuildConfig.DEBUG) Log.d(TAG, expr);", AndroidPostfixTemplatesUtils.IS_NON_NULL);
+        super(alias, "if(BuildConfig.DEBUG) {\n Log.d(TAG, expr) \n};\n", AndroidPostfixTemplatesUtils.IS_NON_NULL);
     }
 
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
         Project project = element.getProject();
-        final GlobalSearchScope resolveScope = element.getResolveScope();
+        Module module = ModuleUtil.findModuleForPsiElement(element);
+        GlobalSearchScope resolveScope;
+        if (module != null) {
+            resolveScope = GlobalSearchScope.moduleScope(module);
+        } else {
+            resolveScope = element.getResolveScope();
+        }
+
         PsiClass[] buildConfigClasses = PsiShortNamesCache.getInstance(project).getClassesByName("BuildConfig", resolveScope);
 
         String buildConfigDebug = "BuildConfig.DEBUG";
-        if (buildConfigClasses.length != 0) {
+        if (buildConfigClasses.length > 0) {
             // Get BuildConfig QualifiedName
             PsiClass buildConfig = buildConfigClasses[0];
             String qualifiedName = buildConfig.getQualifiedName();
             buildConfigDebug = qualifiedName + ".DEBUG";
         }
 
-        return "if (" + buildConfigDebug + ") " + getStaticPrefix(LOG, "d", element) + "($TAG$, $expr$)$END$";
+        return "if (" + buildConfigDebug + ") {\n" + getStaticPrefix(LOG, "d", element) + "($TAG$, $expr$)$END$\n}\n";
     }
 
 }

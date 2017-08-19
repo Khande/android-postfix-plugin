@@ -42,5 +42,14 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="org.easytesting:fest-reflect:1.4.1" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Applications/Android Studio.app/Contents/lib/groovy-all-2.4.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
